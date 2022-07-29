@@ -1,0 +1,12 @@
+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
+
+flux bootstrap github \
+  --owner=PetrMc \
+  --repository=webinar \
+  --path=./clusters/green-v2-gcp-webinar \
+  --personal
+
+kubectl create namespace app
+kubectl label namespace app istio-injection=enabled
+
+kubectl create namespace ingress

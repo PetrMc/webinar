@@ -13,4 +13,4 @@ spec:
   interval: 15s
   install:
     createNamespace: true
-  targetNamespace: blue-app
+  targetNamespace: app
