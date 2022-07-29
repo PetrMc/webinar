@@ -1,4 +1,4 @@
-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
+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
 
 flux bootstrap github \
   --owner=PetrMc \
