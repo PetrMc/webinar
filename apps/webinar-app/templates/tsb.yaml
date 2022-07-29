@@ -76,7 +76,6 @@ items:
         weight: 50
       - name: green-v2-gcp-webinar
         weight: 50
----
 # Create an ingress gateway deployment that will be the entry point to
 # the application
 - apiVersion: install.tetrate.io/v1alpha1
