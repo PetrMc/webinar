@@ -12,7 +12,7 @@ spec:
         kind: GitRepository
         name: flux-system
   interval: 15s
-  suspend: true
+  suspend: false
   install:
     createNamespace: true
   targetNamespace: app
