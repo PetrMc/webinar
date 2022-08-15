@@ -1,0 +1,26 @@
+name: Policy Check
+on:
+  pull_request:
+    types: [opened, reopened]
+  push:
+    branches: [main]
+    paths: [blue, green]
+
+jobs:
+  check-policies:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: policy-agent-blue
+      uses: weaveworks/weave-action@v1
+      with:
+        path: blue
+        policies-path: policy
+
+    - name: policy-agent-green
+      uses: weaveworks/weave-action@v1
+      with:
+        path: green
+        policies-path: policy
