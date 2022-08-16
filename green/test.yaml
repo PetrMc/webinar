@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debug
+  namespace: default
+  labels:
+    app: debug
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: debug
+  template:
+    metadata:
+      labels:
+        app: debug
+    spec:
+      containers:
+      - name: debug
+        image: steveww/debug:latest
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "10Mi"
+          limits:
+            cpu: "500m"
+            memory: "50Mi"
+        imagePullPolicy: IfNotPresent #Always
+        
+        
