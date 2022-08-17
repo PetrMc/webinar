@@ -59,9 +59,9 @@ spec:
     # Only use one of these
     #
     # Weave Policy wrapper
-    #controller_input = input.review.object
+    controller_input = input.review.object
     # OPA Playground
-    controller_input = input
+    #controller_input = input
 
     contains_kind(kind, kinds) {
       kinds[_] = kind
