@@ -1,0 +1,71 @@
+apiVersion: pac.weave.works/v2beta1
+kind: Policy
+metadata:
+  name: weave.webinar.tsb-annotations
+spec:
+  id: weave.webinar.tsb-annotations
+  name: TSB Required Annotations
+  enabled: true
+  description: "Tetrate Service Bus requires certain annotations to be in place to function"
+  how_to_solve: "Add the missing annotaions"
+  category: webinar
+  severity: high
+  targets: {kinds: [Tier1Gateway]}
+  tags: [tsb]
+  parameters:
+    - name: exclude_namespace
+      type: string
+      required: false
+      value: kube-system
+    - name: exclude_label_key
+      type: string
+      required: false
+    - name: exclude_label_value
+      type: string
+      required: false
+  code: |-
+    package weave.webinar.missing_annotations
+
+    import future.keywords
+
+    exclude_namespace := ""
+    exclude_label_key := ""
+    exclude_label_value := ""
+
+    violation[result] {
+      annotations = [
+            "tsb.tetrate.io/organization",
+            "tsb.tetrate.io/tenant",
+            "tsb.tetrate.io/workspace",
+            "tsb.tetrate.io/gatewayGroup",
+        ]
+
+      not exclude_namespace == controller_input.metadata.namespace
+        not exclude_label_value == controller_input.metadata.labels[exclude_label_key]
+        contains_kind(controller_input.kind, {"Tier1Gateway"})
+        
+        some a in annotations
+        not controller_input.metadata.annotations[a]
+        
+        result = {
+          "issue detected": true,
+            "msg": sprintf("you are missing an annotation %v", [a]),
+            "violating_key": "metadata.annotations",
+            "recommended_value": a
+        }
+    }
+
+    #
+    # Only use one of these
+    #
+    # Weave Policy wrapper
+    #controller_input = input.review.object
+    # OPA Playground
+    controller_input = input
+
+    contains_kind(kind, kinds) {
+      kinds[_] = kind
+    }
+
+
+    
