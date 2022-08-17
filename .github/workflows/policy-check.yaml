@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, reopened]
   push:
-    paths: [apps/webinar-ap/**]
+    paths: [apps/webinar-app/**]
 
 jobs:
   check-policies:
