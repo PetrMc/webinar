@@ -4,7 +4,7 @@ on:
     types: [opened, reopened]
   push:
     branches: [main]
-    paths: [blue, green]
+    paths: [apps/webinar-app]
 
 jobs:
   check-policies:
@@ -13,14 +13,8 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
 
-    - name: policy-agent-blue
+    - name: policy-agent-helm
       uses: weaveworks/weave-action@v1
       with:
-        path: blue
-        policies-path: policy
-
-    - name: policy-agent-green
-      uses: weaveworks/weave-action@v1
-      with:
-        path: green
+        path: apps/webinar-app
         policies-path: policy
