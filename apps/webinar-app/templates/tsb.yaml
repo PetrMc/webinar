@@ -61,7 +61,7 @@ items:
       tsb.tetrate.io/tenant: partner-webinar-tenant  
       tsb.tetrate.io/workspace: webinar-app-ws
       tsb.tetrate.io/gatewayGroup: webinar-app-gg
-      spam: fritter
+      spam: spam
   spec:
     workloadSelector:
       namespace: ingress
