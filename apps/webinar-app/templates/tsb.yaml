@@ -61,6 +61,7 @@ items:
       tsb.tetrate.io/tenant: partner-webinar-tenant  
       tsb.tetrate.io/workspace: webinar-app-ws
       tsb.tetrate.io/gatewayGroup: webinar-app-gg
+      foo: bar
   spec:
     workloadSelector:
       namespace: ingress
