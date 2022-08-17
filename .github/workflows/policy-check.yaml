@@ -4,7 +4,7 @@ on:
     types: [opened, reopened]
   push:
     branches: [main]
-    paths: [apps/webinar-app]
+    paths: [apps/webinar-ap/**]
 
 jobs:
   check-policies:
