@@ -1,5 +1,15 @@
 name: Policy Check
 on:
+  workflow_dispatch:
+    inputs:
+      runcheck:
+        description: 'Run Policy check'
+        required: true
+        default: 'no'
+        type: choice
+        options:
+          - yes
+          - no
   pull_request:
     types: [opened, reopened]
   push:
@@ -7,12 +17,27 @@ on:
       - 'apps/webinar-app/**'
 
 jobs:
-  check-policies:
+  checkout:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v2
+    # always use policies from main
+    - name: checkout-policies
+      uses: actions/checkout@v3
+      with:
+        ref: main
+        path: policy-library
 
+    # working branch
+    - name: checkout
+      uses: actions/checkout@v3
+
+    - name: debug
+      run: ls -l
+
+  policycheck:
+    if: inputs.runcheck == 'yes'
+    runs-on: ubuntu-latest
+    steps:
     - name: policy-agent-helm
       uses: weaveworks/weave-action@v1
       with:
