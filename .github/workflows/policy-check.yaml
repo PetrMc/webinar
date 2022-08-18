@@ -1,15 +1,6 @@
 name: Policy Check
 on:
   workflow_dispatch:
-    inputs:
-      runcheck:
-        description: 'Run Policy check'
-        required: true
-        default: 'false'
-        type: choice
-        options:
-          - 'true'
-          - 'false'
   pull_request:
     types: [opened, reopened]
   push:
@@ -17,7 +8,7 @@ on:
       - 'apps/webinar-app/**'
 
 jobs:
-  checkout:
+  policy-validation:
     runs-on: ubuntu-latest
     steps:
     # always use policies from main
@@ -33,11 +24,7 @@ jobs:
       with:
         path: working-branch
 
-    - name: debug
-      run: ls -lR; echo ${{ inputs.runcheck }}
-
     - name: policy-agent
-      if: inputs.runcheck == 'true'
       uses: weaveworks/weave-action@v1
       with:
         path: working-branch/apps/webinar-app
