@@ -36,12 +36,8 @@ jobs:
     - name: debug
       run: ls -lR; echo ${{ inputs.runcheck }}
 
-  policycheck:
-    needs: [checkout]
-    if: inputs.runcheck == 'true'
-    runs-on: ubuntu-latest
-    steps:
-    - name: policy-agent-helm
+    - name: policy-agent
+      if: inputs.runcheck == 'true'
       uses: weaveworks/weave-action@v1
       with:
         path: working-branch/apps/webinar-app
