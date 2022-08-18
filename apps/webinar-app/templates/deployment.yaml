@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webinar-app
+  labels:
+    app: webinar-app
+    version: green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webinar-app
+      version: green
+  template:
+    metadata:
+      labels:
+        app: webinar-app
+        version: green
+    spec:
+      containers:
+      - name: webinar-app
+        image: argoproj/rollouts-demo:green
+        resources:
+          requests:
+            cpu: "100m"
+        imagePullPolicy: IfNotPresent #Always
+        ports:
+        - containerPort: 5000
+        
