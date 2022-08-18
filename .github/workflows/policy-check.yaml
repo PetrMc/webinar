@@ -34,7 +34,7 @@ jobs:
         path: working-branch
 
     - name: debug
-      run: ls -l; echo ${{ inputs.runcheck }}
+      run: ls -lR; echo ${{ inputs.runcheck }}
 
   policycheck:
     needs: [checkout]
