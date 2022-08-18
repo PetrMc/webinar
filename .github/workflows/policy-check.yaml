@@ -5,11 +5,11 @@ on:
       runcheck:
         description: 'Run Policy check'
         required: true
-        default: 'no'
+        default: 'false'
         type: choice
         options:
-          - yes
-          - no
+          - 'true'
+          - 'false'
   pull_request:
     types: [opened, reopened]
   push:
@@ -38,11 +38,11 @@ jobs:
 
   policycheck:
     needs: [checkout]
-    if: inputs.runcheck == 'yes'
+    if: inputs.runcheck == 'true'
     runs-on: ubuntu-latest
     steps:
     - name: policy-agent-helm
       uses: weaveworks/weave-action@v1
       with:
-        path: apps/webinar-app
-        policies-path: policy
+        path: working-branch/apps/webinar-app
+        policies-path: policy-library/policy
