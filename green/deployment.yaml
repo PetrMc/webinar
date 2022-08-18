@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: webinar-app
-        image: argoproj/rollouts-demo:green
+        image: mcallisterpetr/webinar-app:green
         resources:
           requests:
             cpu: "100m"
