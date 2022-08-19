@@ -6,6 +6,8 @@ on:
   push:
     paths:
       - 'apps/webinar-app/**'
+      - 'blue'
+      - 'green'
 
 jobs:
   policy-validation:
