@@ -24,11 +24,21 @@
 - Review Demo steps slide
 
 ### Adding green
+- Make sure you in the main branch
+    ```bash
+    cd ~/GIT/webinar
+    git branch -d deploying-green
+    git checkout main && git fetch && git pull
+    ```    
 - Show the current yaml applied
 - Review yamls from `green` directory
+- Create new branch
+    ```bash
+    git checkout -b deploying-green
+    ```    
 - Copy yamls from green
    ```bash
-   ~/GIT/webinar/blue/
+   cp ~/GIT/webinar/green/* ~/GIT/webinar/apps/webinar-app/templates/
    ```
 - Bump up helm `Chart.yaml` version 
 
@@ -36,6 +46,13 @@
 - Misspell `organization` field
 - Submit `github` changes
    ```bash
-   
+   git add . && git commit -m "Deploying Green app v2 and shifting 10% of traffic to Green" && git push --set-upstream origin deploying-green
+   ```    
+- Switch to Github page and see GitOps in action
+- Observe the error - fix the `organization` spelling
+- Resubmit to Github
+   ```bash
+   git add . && git commit -m "Fixing yaml" && git push
+   ```
 
 
