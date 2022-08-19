@@ -1,4 +1,5 @@
 # Weavework and Tetrate Webinar
+(Registration [page](https://go.weave.works/webinar-security-and-resiliency-of-cloud-native-applications.html))
 
 ## Preparation steps
 
@@ -6,7 +7,6 @@
 
 - Open the following Tabs in web-browser
     - Presentation Demo [Slide](https://docs.google.com/presentation/d/1QWthI3HmddY9vmSBiav6_JnelMizwp9D9v-29uD2xFY/present?slide=id.p#27)
-    - Registration [page](https://go.weave.works/webinar-security-and-resiliency-of-cloud-native-applications.html)
     - GitHub [repository](https://github.com/PetrMc/webinar)
     - Weaverworks [GitOps](https://localhost:8000/)
     > **_NOTE:_** requires forwarding in local cluster per `kubectl port-forward -n flux-system deployment/flux-system-weave-gitops-mccp-cluster-service 8000:8000`
@@ -27,8 +27,8 @@
 - Make sure you in the main branch
     ```bash
     cd ~/GIT/webinar
-    git branch -d deploying-green
     git checkout main && git fetch && git pull
+    git branch -d deploying-green
     ```    
 - Show the current yaml applied
 - Review yamls from `green` directory
