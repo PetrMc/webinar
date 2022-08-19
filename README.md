@@ -10,6 +10,7 @@
     - GitHub [repository](https://github.com/PetrMc/webinar)
     - Weaverworks [GitOps](https://localhost:8000/)
     > **_NOTE:_** requires forwarding in local cluster per `kubectl port-forward -n flux-system deployment/flux-system-weave-gitops-mccp-cluster-service 8000:8000`
+    - TSB Console - https://webinar-tsb.cx.tetrate.info:8443/login?returnTo=%2F
 
 - In Separate window open and keep it running
    - Application - http://webinar-app.cx.tetrate.info/
@@ -40,16 +41,17 @@
    ```bash
    cp ~/GIT/webinar/green/* ~/GIT/webinar/apps/webinar-app/templates/
    ```
-- Bump up helm `Chart.yaml` version 
+- **Bump** up helm `Chart.yaml` version 
 
 ### Discuss and demo Gitops controls
-- Misspell `organization` field
+- Demo that `organization` field spelled with `s` instead of `z`
 - Submit `github` changes
    ```bash
    git add . && git commit -m "Deploying Green app v2 and shifting 10% of traffic to Green" && git push --set-upstream origin deploying-green
    ```    
 - Switch to Github page and see GitOps in action
 - Observe the error - fix the `organization` spelling in `apps/webinar-app/lb.yaml`
+- Discuss Github Actions and `policy` files
 - Resubmit to Github
    ```bash
    git add . && git commit -m "Fixing yaml" && git push
@@ -61,7 +63,7 @@
 ### Swiching more traffic to Green
 
 - Edit `tsb.yaml` in `app/webinar-app/template`
-- Bump up helm `Chart.yaml` version 
+- **Bump** up helm `Chart.yaml` version 
 - Submit changes to `Github`
   ```bash
   git add . && git commit -m "Shifting more traffic to Green" && git push
@@ -76,7 +78,7 @@
   rm apps/webinar-app/templates/*
   cp blue/*.yaml apps/webinar-app/templates/
   ```
-- Bump up helm `Chart.yaml` version 
+- **Bump** up helm `Chart.yaml` version 
 - Submit changes to `Github`
   ```bash
   git add . && git commit -m "Resetting to Blue" && git push
