@@ -62,7 +62,7 @@
 
 ### Swiching more traffic to Green
 
-- Edit `tsb.yaml` in `app/webinar-app/template`
+- Edit `lb.yaml` in `app/webinar-app/template` to add more traffic to Green
 - **Bump** up helm `Chart.yaml` version 
 - Submit changes to `Github`
   ```bash
