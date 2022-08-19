@@ -57,6 +57,7 @@ items:
   metadata:
     name: app-ingress
     annotations:
+      tsb.tetrate.io/organization: partner-webinar-org    
       tsb.tetrate.io/tenant: partner-webinar-tenant  
       tsb.tetrate.io/workspace: webinar-app-ws
       tsb.tetrate.io/gatewayGroup: webinar-app-gg
