@@ -74,7 +74,7 @@
 - delete all files from templates and copy `Blue` `tsb.yaml`
   ```bash
   rm apps/webinar-app/templates/*
-  cp blue/tsb.yaml apps/webinar-app/templates/
+  cp blue/*.yaml apps/webinar-app/templates/
   ```
 - Bump up helm `Chart.yaml` version 
 - Submit changes to `Github`
