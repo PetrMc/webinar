@@ -46,7 +46,7 @@
 - Misspell `organization` field
 - Submit `github` changes
    ```bash
-   git add . && git commit -m "Deploying Green app v2 and shifting 10% of traffic to Green" && git push
+   git add . && git commit -m "Deploying Green app v2 and shifting 10% of traffic to Green" && git push --set-upstream origin deploying-green
    ```    
 
 
