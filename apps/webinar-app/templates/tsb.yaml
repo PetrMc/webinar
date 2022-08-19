@@ -52,25 +52,4 @@ items:
             - route:
                 host: "app/webinar-app.app.svc.cluster.local"
                 port: 5000
-- apiVersion: gateway.tsb.tetrate.io/v2
-  kind: Tier1Gateway
-  metadata:
-    name: app-ingress
-    annotations:
-      tsb.tetrate.io/organization: partner-webinar-org
-      tsb.tetrate.io/tenant: partner-webinar-tenant  
-      tsb.tetrate.io/workspace: webinar-app-ws
-      tsb.tetrate.io/gatewayGroup: webinar-app-gg
-  spec:
-    workloadSelector:
-      namespace: ingress
-      labels:
-        app: tsb-gateway-ingress
-    externalServers:
-    - name: webinar-app
-      hostname: "webinar-app.cx.tetrate.info"      
-      port: 80
-      tls: {}
-      clusters:
-      - name: blue-v1-aws-webinar
-        weight: 100
+
