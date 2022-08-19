@@ -57,7 +57,7 @@ items:
   metadata:
     name: app-ingress
     annotations:
-      tsb.tetrate.io/organization: partner-webinar-org
+      tsb.tetrate.io/organization: partner-webinar-org    
       tsb.tetrate.io/tenant: partner-webinar-tenant  
       tsb.tetrate.io/workspace: webinar-app-ws
       tsb.tetrate.io/gatewayGroup: webinar-app-gg
@@ -73,4 +73,14 @@ items:
       tls: {}
       clusters:
       - name: blue-v1-aws-webinar
-        weight: 100
+        weight: 90
+      - name: green-v2-gcp-webinar
+        weight: 10
+# Create an ingress gateway deployment that will be the entry point to
+# the application
+- apiVersion: install.tetrate.io/v1alpha1
+  kind: IngressGateway
+  metadata:
+    namespace: app
+    name: tsb-gateway-app
+  spec: {}
