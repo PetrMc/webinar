@@ -1,4 +1,4 @@
-# Weavework and Tetrate Wwebinar
+# Weavework and Tetrate Webinar
 
 ## Preparation steps
 
@@ -63,12 +63,23 @@
 - Edit `tsb.yaml` in `app/webinar-app/template`
 - Bump up helm `Chart.yaml` version 
 - Submit changes to `Github`
-   ```bash
-   git add . && git commit -m "Shifting more traffic to Green" && git push
-   ```
+  ```bash
+  git add . && git commit -m "Shifting more traffic to Green" && git push
+  ```
 - Merge the changes 
 - Observe `GitOps`, `TSB` and `web-app`
 
+### Reset
 
-
-
+- delete all files from templates and copy `Blue` `tsb.yaml`
+  ```bash
+  rm apps/webinar-app/templates/*
+  cp blue/tsb.yaml apps/webinar-app/templates/
+  ```
+- Bump up helm `Chart.yaml` version 
+- Submit changes to `Github`
+  ```bash
+  git add . && git commit -m "Resetting to Blue" && git push
+  ```
+- Merge the changes 
+- Confirm everything is reset to blue only

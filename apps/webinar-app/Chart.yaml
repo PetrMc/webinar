@@ -3,4 +3,4 @@ name: webinar-app
 description: Blue-Green deployment demo.
 type: application
 version: 0.2.7
-appVersion: "0.2.7"
+appVersion: "0.2.8"
