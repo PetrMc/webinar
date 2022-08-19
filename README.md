@@ -54,5 +54,21 @@
    ```bash
    git add . && git commit -m "Fixing yaml" && git push
    ```
+- Switch back to `Github` - merge the update
+- Watch in `GitOps` - the changes being applied
+- Show change in `TSB` and `Web-app` panels
+
+### Swiching more traffic to Green
+
+- Edit `tsb.yaml` in `app/webinar-app/template`
+- Bump up helm `Chart.yaml` version 
+- Submit changes to `Github`
+   ```bash
+   git add . && git commit -m "Shifting more traffic to Green" && git push
+   ```
+- Merge the changes 
+- Observe `GitOps`, `TSB` and `web-app`
+
+
 
 
