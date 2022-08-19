@@ -1,4 +1,4 @@
-# Weavework and Tetrate Wwebinar
+# Weavework and Tetrate Webinar
 
 ## Preparation steps
 
