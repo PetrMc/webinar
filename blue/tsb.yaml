@@ -1,76 +1,81 @@
-apiVersion: v1
-kind: List
-items:
+
 # Create the workspace and gateway group that capture the namespaces where
 # the helloworld application will run
-- apiVersion: tsb.tetrate.io/v2
-  kind: Workspace
-  metadata:
-    name: webinar-app-ws
-    annotations:
-      tsb.tetrate.io/organization: partner-webinar-org
-      tsb.tetrate.io/tenant: partner-webinar-tenant  
-  spec:
-    namespaceSelector:
-      names:
-        - "*/app"
-        - "*/ingress"
-- apiVersion: gateway.tsb.tetrate.io/v2
-  kind: Group
-  metadata:
-    name: webinar-app-gg
-    annotations:
-      tsb.tetrate.io/organization: partner-webinar-org
-      tsb.tetrate.io/tenant: partner-webinar-tenant  
-      tsb.tetrate.io/workspace: webinar-app-ws
-  spec:
-    namespaceSelector:
-      names:
-        - "*/*"
-    configMode: BRIDGED
+---
+apiVersion: tsb.tetrate.io/v2
+kind: Workspace
+metadata:
+  name: webinar-app-ws
+  annotations:
+    tsb.tetrate.io/organization: partner-webinar-org
+    tsb.tetrate.io/tenant: partner-webinar-tenant  
+spec:
+  namespaceSelector:
+    names:
+      - "*/app"
+      - "*/ingress"
+
+---
+apiVersion: gateway.tsb.tetrate.io/v2
+kind: Group
+metadata:
+  name: webinar-app-gg
+  annotations:
+    tsb.tetrate.io/organization: partner-webinar-org
+    tsb.tetrate.io/tenant: partner-webinar-tenant  
+    tsb.tetrate.io/workspace: webinar-app-ws
+spec:
+  namespaceSelector:
+    names:
+      - "*/*"
+  configMode: BRIDGED
+
 # Expose the productpage service in the application ingress
-- apiVersion: gateway.tsb.tetrate.io/v2
-  kind: IngressGateway
-  metadata:
-    name: app-gateway
-    annotations:
-      tsb.tetrate.io/organization: partner-webinar-org
-      tsb.tetrate.io/tenant: partner-webinar-tenant  
-      tsb.tetrate.io/workspace: webinar-app-ws
-      tsb.tetrate.io/gatewayGroup: webinar-app-gg
-  spec:
-    workloadSelector:
-      namespace: app
-      labels:
-        app: tsb-gateway-app
-    http:
-      - name: webinar-app
-        port: 80
-        hostname: "webinar-app.cx.tetrate.info"
-        routing:
-          rules:
-            - route:
-                host: "app/webinar-app.app.svc.cluster.local"
-                port: 5000
-- apiVersion: gateway.tsb.tetrate.io/v2
-  kind: Tier1Gateway
-  metadata:
-    name: app-ingress
-    annotations:
-      tsb.tetrate.io/organization: partner-webinar-org
-      tsb.tetrate.io/tenant: partner-webinar-tenant  
-      tsb.tetrate.io/workspace: webinar-app-ws
-      tsb.tetrate.io/gatewayGroup: webinar-app-gg
-  spec:
-    workloadSelector:
-      namespace: ingress
-      labels:
-        app: tsb-gateway-ingress
-    externalServers:
+---
+apiVersion: gateway.tsb.tetrate.io/v2
+kind: IngressGateway
+metadata:
+  name: app-gateway
+  annotations:
+    tsb.tetrate.io/organization: partner-webinar-org
+    tsb.tetrate.io/tenant: partner-webinar-tenant  
+    tsb.tetrate.io/workspace: webinar-app-ws
+    tsb.tetrate.io/gatewayGroup: webinar-app-gg
+spec:
+  workloadSelector:
+    namespace: app
+    labels:
+      app: tsb-gateway-app
+  http:
     - name: webinar-app
-      hostname: "webinar-app.cx.tetrate.info"      
       port: 80
-      tls: {}
-      clusters:
-      - name: blue-v1-aws-webinar
-        weight: 100
+      hostname: "webinar-app.cx.tetrate.info"
+      routing:
+        rules:
+          - route:
+              host: "app/webinar-app.app.svc.cluster.local"
+              port: 5000
+
+---
+apiVersion: gateway.tsb.tetrate.io/v2
+kind: Tier1Gateway
+metadata:
+  name: app-ingress
+  annotations:
+    tsb.tetrate.io/organization: partner-webinar-org
+    tsb.tetrate.io/tenant: partner-webinar-tenant  
+    tsb.tetrate.io/workspace: webinar-app-ws
+    tsb.tetrate.io/gatewayGroup: webinar-app-gg
+spec:
+  workloadSelector:
+    namespace: ingress
+    labels:
+      app: tsb-gateway-ingress
+  externalServers:
+  - name: webinar-app
+    hostname: "webinar-app.cx.tetrate.info"      
+    port: 80
+    tls: {}
+    clusters:
+    - name: blue-v1-aws-webinar
+      weight: 100
