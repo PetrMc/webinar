@@ -51,6 +51,7 @@
    ```    
 - Switch to Github page and see GitOps in action
 - Observe the error - fix the `organization` spelling in `apps/webinar-app/lb.yaml`
+- Discuss Github Actions and `policy` files
 - Resubmit to Github
    ```bash
    git add . && git commit -m "Fixing yaml" && git push
