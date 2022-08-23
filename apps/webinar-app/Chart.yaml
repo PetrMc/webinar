@@ -2,5 +2,7 @@ apiVersion: v2
 name: webinar-app
 description: Blue-Green deployment demo.
 type: application
-version: 0.4.5
-appVersion: "0.4.5"
+version: 0.5.0
+appVersion: "0.5.0"
+rm apps/webinar-app/templates/*
+cp blue/*.yaml apps/webinar-app/templates/

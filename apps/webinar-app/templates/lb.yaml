@@ -19,6 +19,4 @@ spec:
     tls: {}
     clusters:
     - name: blue-v1-aws-webinar
-      weight: 75
-    - name: green-v2-gcp-webinar
-      weight: 25
+      weight: 100
