@@ -28,7 +28,9 @@
     ```
 - if Weaveworks UI is not accessable in separate session
     ```bash
-   `kubectl port-forward -n flux-system deployment/flux-system-weave-gitops-mccp-cluster-service 8000:8000`
+    gke_gitops-webinar-357816_us-east1_green-v2-gcp-webinar
+    kubectl port-forward -n flux-system deployment/flux-system-weave-gitops-mccp-cluster-service 8000:8000 &
+    clear
     ```
 
 ### Intro steps
@@ -101,3 +103,19 @@
   ```
 - Merge the changes 
 - Confirm everything is reset to blue only
+
+## Helful info
+
+- Reset web ui
+```bash
+kubectl --context gke_gitops-webinar-357816_us-west1_ingress-gcp-webinar -n tsb delete pod -l app=web
+```
+- get to not console
+```bash
+wsl -d Ubuntu
+```
+- login info
+```bash
+wego-...
+rockyoursox...
+```
