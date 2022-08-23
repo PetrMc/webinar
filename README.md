@@ -15,22 +15,32 @@
 - In Separate window open and keep it running
    - Application [Page](http://webinar-app.cx.tetrate.info/)
 
+
 ## Demo steps
 
-### Intro steps
-- Review Slide Architecture
-- Walk via TSB Interface 
-- Show application page
-- Demo GitOps Dashbord
-- Review Demo steps slide
+### Pre-demo
 
-### Adding green
 - Make sure you in the main branch
     ```bash
     cd ~/GIT/webinar
     git checkout main && git fetch && git pull
     git branch -d deploying-green
-    ```    
+    ```
+- if Weaveworks UI is not accessable in separate session
+    ```bash
+   `kubectl port-forward -n flux-system deployment/flux-system-weave-gitops-mccp-cluster-service 8000:8000`
+    ```
+
+### Intro steps
+- Review Demo steps slide
+- Review Slide Architecture
+- Walk via TSB Interface 
+- Show application page
+- Demo GitOps Dashbord
+
+
+### Adding green
+
 - Show the current yaml applied
 - Review yamls from `green` directory
 - Create new branch
@@ -45,6 +55,12 @@
 
 ### Discuss and demo Gitops controls
 - Demo that `organization` field spelled with `s` instead of `z`
+   - in yaml `apps/webinar-app/lb.yaml`
+   - in tclt CLI 
+   ```bash
+   tctl get org -o yaml
+   ```
+
 - Submit `github` changes
    ```bash
    git add . && git commit -m "Deploying Green app v2 and shifting 10% of traffic to Green" && git push --set-upstream origin deploying-green
