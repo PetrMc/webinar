@@ -65,9 +65,7 @@
 
 - Submit `github` changes
    ```bash
-   git add . && \ 
-   git commit -m "Deploying Green app v2 and shifting 10% of traffic to Green" && \ 
-   git push --set-upstream origin deploying-green
+   git add . && git commit -m "Deploying Green app v2 and shifting 10% of traffic to Green" && git push --set-upstream origin deploying-green
    ```    
 - Switch to Github page and see GitOps in action
 - Observe the error - fix the `organization` spelling in `apps/webinar-app/lb.yaml`
