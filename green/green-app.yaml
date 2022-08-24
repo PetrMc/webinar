@@ -27,4 +27,25 @@ spec:
         imagePullPolicy: IfNotPresent #Always
         ports:
         - containerPort: 5000
-        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webinar-app
+  labels:
+    app: webinar-app  
+    service: webinar-app
+spec:
+  ports:
+  - port: 5000
+    name: http
+    targetPort: 8080
+  selector:
+    app: webinar-app        
+---
+apiVersion: install.tetrate.io/v1alpha1
+kind: IngressGateway
+metadata:
+  namespace: app
+  name: tsb-gateway-app
+spec: {}
